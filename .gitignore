@@ -1,6 +1,7 @@
 /vendor
 /node_modules
 /public/storage
+/config/tradenity_dev.php
 Homestead.yaml
 Homestead.json
 .env
