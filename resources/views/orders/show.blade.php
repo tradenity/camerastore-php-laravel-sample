@@ -28,19 +28,19 @@
                 </tr>
                 <tr>
                     <th>Order ID</th>
-                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->getId() }}</td>
                 </tr>
                 <tr>
                     <th>Creation Date</th>
-                    <td>{{ $order->createdAt }}</td>
+                    <td>{{ $order->getCreatedAt()->format('Y-m-d') }}</td>
                 </tr>
                 <tr>
                     <th>Total price</th>
-                    <td>{{ $order->total }}</td>
+                    <td>{{ $order->getTotal() / 100.0 }}</td>
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td>{{ $order->status }}</td>
+                    <td>{{ $order->getStatus() }}</td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -59,12 +59,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ( $order->items as $i )
+                            @foreach ( $order->getItems() as $i )
                             <tr>
-                                <td>{{ $i->product->title }}</td>
-                                <td>{{ $i->quantity }}</td>
-                                <td>{{ $i->unitPrice }}</td>
-                                <td>{{ $i->total }}</td>
+                                <td>{{ $i->getProduct()->getName() }}</td>
+                                <td>{{ $i->getQuantity() }}</td>
+                                <td>{{ $i->getUnitPrice() / 100.0 }}</td>
+                                <td>{{ $i->getTotal() / 100.0 }}</td>
                             </tr>
                             @endforeach
                             </tbody>

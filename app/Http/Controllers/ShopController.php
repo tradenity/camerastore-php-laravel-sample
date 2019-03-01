@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Tradenity\SDK\Entities\Brand as Brand;
-use Tradenity\SDK\Entities\Category as Category;
-use Tradenity\SDK\Entities\Collection as Collection;
-use Tradenity\SDK\Entities\Product;
-use Tradenity\SDK\Entities\ShoppingCart;
+use Tradenity\SDK\Resources\Brand;
+use Tradenity\SDK\Resources\Category;
+use Tradenity\SDK\Resources\Collection;
+use Tradenity\SDK\Resources\Product;
+use Tradenity\SDK\Resources\ShoppingCart;
 
 class ShopController extends Controller
 {
@@ -35,7 +35,7 @@ class ShopController extends Controller
             'products' => $products,
             'brands' => Brand::findAll(),
             'categories' => Category::findAll(),
-            'featured' => Collection::findOne(['name' => 'featured']),
+            'featured' => Collection::findOneBy(['name' => 'featured']),
         ));
     }
 
@@ -43,10 +43,10 @@ class ShopController extends Controller
     public function categories($id){
         return view('shop/products', array(
             'cart' => ShoppingCart::get(),
-            'products' => Product::findAll(['category' => $id]),
+            'products' => Product::findAllBy(['category' => $id]),
             'brands' => Brand::findAll(),
             'categories' => Category::findAll(),
-            'featured' => Collection::findOne(['name' => 'featured']),
+            'featured' => Collection::findOneBy(['name' => 'featured']),
         ));
     }
 
@@ -54,10 +54,10 @@ class ShopController extends Controller
     public function brands($id){
         return view('shop/products', array(
             'cart' => ShoppingCart::get(),
-            'products' => Product::findAll(['brand' => $id]),
+            'products' => Product::findAllBy(['brand' => $id]),
             'brands' => Brand::findAll(),
             'categories' => Category::findAll(),
-            'featured' => Collection::findOne(['name' => 'featured']),
+            'featured' => Collection::findOneBy(['name' => 'featured']),
         ));
     }
 
@@ -67,7 +67,7 @@ class ShopController extends Controller
             'product' => Product::findById($id),
             'brands' => Brand::findAll(),
             'categories' => Category::findAll(),
-            'featured' => Collection::findOne(['name' => 'featured']),
+            'featured' => Collection::findOneBy(['name' => 'featured']),
         ));
     }
     

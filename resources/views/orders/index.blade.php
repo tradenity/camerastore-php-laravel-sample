@@ -39,13 +39,13 @@
                     @foreach($orders as $o)
                     <tr>
                         <td>
-                            <a href="/orders/{{$o->id}}">{{ $o->id }}</a>
+                            <a href="/orders/{{$o->getId()}}">{{ $o->getId() }}</a>
                         </td>
-                        <td>{{ $o->createdAt }}</td>
-                        <td>{{ $o->total }}</td>
-                        <td>{{ $o->status }}</td>
+                        <td>{{ $o->getCreatedAt()->format('Y-m-d') }}</td>
+                        <td>{{ $o->getTotal() / 100.0 }}</td>
+                        <td>{{ $o->getStatus() }}</td>
                         <td>
-                            <form action="/orders/refund/{{$o->id}}" method="post">
+                            <form action="/orders/refund/{{$o->getId() }}" method="post">
                                 <input type="submit" value="Refund"/>
                             </form>
                         </td>

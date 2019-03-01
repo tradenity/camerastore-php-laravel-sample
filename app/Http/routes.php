@@ -36,4 +36,6 @@ Route::get('/orders', 'OrdersController@index');
 Route::get('/orders/checkout', 'OrdersController@checkout');
 Route::get('/orders/{id}', 'OrdersController@show');
 Route::post('/orders/create', 'OrdersController@create');
+Route::post('/orders/shipping', 'OrdersController@addShipping');
+Route::post('/orders/payment', 'OrdersController@addPayment');
 Route::post('/orders/refund/{id}', 'OrdersController@refund');

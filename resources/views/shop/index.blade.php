@@ -99,16 +99,16 @@
 		</style>
         @foreach($collections as $coll)
 		<div class="container collections" >
-			<h3 class="like text-center">{{ $coll->title }}</h3>
-			<ul id="{{ $coll->name }}" class="flexiselDemo3">
-            @foreach($coll->products as $p)
+			<h3 class="like text-center">{{ $coll->getName() }}</h3>
+			<ul id="{{ $coll->getSlug() }}" class="flexiselDemo3">
+            @foreach($coll->getProducts() as $p)
 				<li>
-					<a href="/products/{{ $p->id }}">
-						<img src="{{$p->mainPhoto->url}}" class="img-responsive" alt="" />
+					<a href="/products/{{ $p->getId() }}">
+						<img src="{{$p->getMainPhoto()->getUrl() }}" class="img-responsive" alt="" />
 					</a>
 					<div class="product liked-product simpleCart_shelfItem">
-						<a class="like_name" href="/products/{{ $p->id }}">{{ $p->title }}</a>
-						<p><a class="item_add add_to_cart_button" data-product_id="{{$p->id}}"><i></i> <span class=" item_price">$ {{ $p->price }}</span></a></p>
+						<a class="like_name" href="/products/{{ $p->getId() }}">{{ $p->getName() }}</a>
+						<p><a class="item_add add_to_cart_button" data-product_id="{{$p->getId() }}"><i></i> <span class=" item_price">$ {{ $p->getPrice() }}</span></a></p>
 					</div>
 				</li>
                 @endforeach

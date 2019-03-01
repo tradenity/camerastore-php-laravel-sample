@@ -11,7 +11,7 @@
 					<h2>Browse By Brand</h2>
 					<ul class="product-list">
                         @foreach($brands as $brand)
-						<li><a href="/brands/{{ $brand->id }}">{{ $brand->title }}</a></li>
+						<li><a href="/brands/{{ $brand->getId() }}">{{ $brand->getName() }}</a></li>
                         @endforeach
 					</ul>
 				</div>
@@ -25,16 +25,16 @@
 	<!-- content-section-ends -->
 	<div class="other-products">
 		<div class="container">
-			<h3 class="like text-center">{{ $featured->title }}</h3>
+			<h3 class="like text-center">{{ $featured->getName() }}</h3>
 			<ul id="flexiselDemo3">
-                @foreach($featured->products as $p)
+                @foreach( $featured->getProducts() as $p)
 				<li>
-					<a href="/products/{{ $p->id }}">
-						<img src="{{ $p->mainPhoto->url}}" style="width: 220px;" class="img-responsive"/>
+					<a href="/products/{{ $p->getId() }}">
+						<img src="{{ $p->getMainPhoto()->getUrl() }}" style="width: 220px;" class="img-responsive"/>
 					</a>
 					<div class="product liked-product simpleCart_shelfItem">
-						<a class="like_name" href="/products/{{ $p->id }}">{{ $p->title }}</a>
-						<p><a class="item_add add_to_cart_button" href="#" data-product_id="{{ $p->id}}"><i></i> <span class=" item_price">$ {{ $p->price }}</span></a></p>
+						<a class="like_name" href="/products/{{ $p->getId() }}">{{ $p->getName() }}</a>
+						<p><a class="item_add add_to_cart_button" href="#" data-product_id="{{ $p->getId() }}"><i></i> <span class=" item_price">$ {{ $p->getPrice() }}</span></a></p>
 					</div>
 				</li>
                 @endforeach

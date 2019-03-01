@@ -19,7 +19,7 @@
 			<div class="clearfix"></div>
 		</div>
 		<h2>MY SHOPPING CART </h2>
-		@if ( $cart->count <= 0)
+		@if ( count($cart->getItems()) <= 0)
 		<h1>No Items in your cart yet</h1>
 		@else
 		<div class="cart-gd">
@@ -53,22 +53,22 @@
 					});
 				});
 			</script>
-			@foreach($cart->items as $item)
-			<div class="cart-header" id="{{$item->id}}" >
+			@foreach($cart->getItems() as $item)
+			<div class="cart-header" id="{{$item->getId() }}" >
 
-				<a href="#" class="close1 deleteItem" data-item-id="{{$item->id}}"> </a>
+				<a href="#" class="close1 deleteItem" data-item-id="{{$item->getId() }}"> </a>
 				<div class="cart-sec simpleCart_shelfItem">
 					<div class="cart-item cyc">
-						<img src="{{$item->product->mainPhoto->url}}" class="img-responsive" alt="" />
+						<img src="{{$item->getProduct()->getMainPhoto()->getUrl() }}" class="img-responsive" alt="" />
 					</div>
 					<div class="cart-item-info">
-						<h3><a href="#"> {{$item->product->title}} </a></h3>
+						<h3><a href="#"> {{$item->getProduct()->getName() }} </a></h3>
 						<div class="delivery">
-							<p><span>Unit Charges : $</span> <span>{{$item->unitPrice}}</span></p>
+							<p><span>Unit Charges : $</span> <span>{{$item->getUnitPrice() / 100.0 }}</span></p>
 							<div class="clearfix"></div>
-							<p><span>Quantity : </span> <span>{{$item->quantity}}</span></p>
+							<p><span>Quantity : </span> <span>{{$item->getQuantity() }}</span></p>
 							<div class="clearfix"></div>
-							<p><span>Total price : $</span> <span>{{$item->total}}</span></p>
+							<p><span>Total price : $</span> <span>{{$item->getSubtotal() / 100.0 }}</span></p>
 							<div class="clearfix"></div>
 						</div>
 					</div>

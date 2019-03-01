@@ -87,7 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="/login"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
 					<li><a href="/register"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>
 					@else
-					<li><a href="/">Welcome {{ Auth::user()->username }}</a></li>
+					<li><a href="/">Welcome {{ Auth::user()->getUsername() }}</a></li>
 					<li><a href="/orders"><span class="glyphicon glyphicon-lock"> </span>My Orders</a></li>
 					<li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					@endif
@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="header-right">
 				<div class="cart box_1">
 
-						<h3> $<span id="cart_total" class="simpleCart_total"> {{ $cart->total}} </span> (<span id="cart_items_count" class="simpleCart_quantity" > {{ $cart->count }} </span><span>Items</span>)<img src="/images/bag.png" alt="" /></h3>
+						<h3> $<span id="cart_total" class="simpleCart_total"> {{ $cart->getTotal() / 100.0 }} </span> (<span id="cart_items_count" class="simpleCart_quantity" > {{ count($cart->getItems()) }} </span><span>Items</span>)<img src="/images/bag.png" alt="" /></h3>
 
 					<p><a href="/cart" class="simpleCart_empty">Your cart</a></p>
 					<div class="clearfix"> </div>
@@ -127,8 +127,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="nav navbar-nav" id="category_menu">
 					<li><a href="/products" >All</a></li>
                     @foreach($categories as $cat)
-					@if ($cat->name != 'Uncategorized' )
-					<li><a href="/categories/{{ $cat->id }}" >{{ $cat->title }}</a></li>
+					@if ($cat->getName() != 'Uncategorized' )
+					<li><a href="/categories/{{ $cat->getId() }}" >{{ $cat->getName() }}</a></li>
 					@endif
                     @endforeach
 					<li><a href="#" id="show_search_box"><span class="glyphicon glyphicon-search"></span></a></li>
@@ -187,6 +187,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 	
 </script>
-{% block page_js %}{% endblock %}
+
 </body>
 </html>
