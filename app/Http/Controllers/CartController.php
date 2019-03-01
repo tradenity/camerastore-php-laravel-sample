@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Tradenity\SDK\Entities\Category;
-use Tradenity\SDK\Entities\ShoppingCart;
+use Tradenity\SDK\Resources\Category;
+use Tradenity\SDK\Resources\ShoppingCart;
+use Tradenity\SDK\Resources\LineItem;
+use Tradenity\SDK\Resources\Product;
 
 class CartController extends Controller
 {
@@ -22,13 +24,14 @@ class CartController extends Controller
     {
         $productId = $request->input('product');
         $quantity = (int)$request->input('quantity');
-        $cart = ShoppingCart::add($productId, $quantity);
-        return response()->json(['total' => $cart->total, 'count' => $cart->count]);
+        $product = new Product(['id' => $productId]);
+        $cart = ShoppingCart::addItem(new LineItem(['product' => $product, 'quantity' => $quantity]));
+        return response()->json(['total' => $cart->getTotal(), 'count' => count($cart->getItems())]);
     }
 
     public function removeItem($id)
     {
-        $cart = ShoppingCart::removeItem($id);
-        return response()->json(['total' => $cart->total, 'count' => $cart->count]);
+        $cart = ShoppingCart::deleteItem($id);
+        return response()->json(['total' => $cart->getTotal(), 'count' => count($cart->getItems())]);
     }
 }

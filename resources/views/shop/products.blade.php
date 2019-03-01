@@ -54,20 +54,20 @@
                 @foreach($products as $p)
 				<li>
 					<div>
-						<a class="cbp-vm-image" href="/products/{{ $p->id }}">
+						<a class="cbp-vm-image" href="/products/{{ $p->getId() }}">
 							<div class="simpleCart_shelfItem">
 								<div class="view view-first">
 									<div class="inner_content clearfix">
 										<div class="product_image">
-											<img src="{{ $p->mainPhoto->url }}" class="img-responsive" alt=""/>
+											<img src="{{ $p->getMainPhoto()->getUrl() }}" class="img-responsive" alt=""/>
 											<div class="mask">
 												<div class="info">Quick View</div>
 											</div>
 											<div class="product_container">
 												<div class="cart-left">
-													<p class="title">{{ $p->title }}</p>
+													<p class="title">{{ $p->getName() }}</p>
 												</div>
-												<div class="pricey"><span class="item_price" >$ {{ $p->price }}</span></div>
+												<div class="pricey"><span class="item_price" >$ {{ $p->getPrice() }}</span></div>
 												<div class="clearfix"></div>
 											</div>
 										</div>
@@ -77,9 +77,9 @@
 						</a>
 
 						<div class="cbp-vm-details">
-                            {{ $p->shortDescription }}
+                            {{ $p->getShortDescription() }}
 						</div>
-						<a class="cbp-vm-icon cbp-vm-add item_add add_to_cart_button" data-product_id="{{ $p->id}}" href="#">Add to cart</a>
+						<a class="cbp-vm-icon cbp-vm-add item_add add_to_cart_button" data-product_id="{{ $p->getId() }}" href="#">Add to cart</a>
 					</div>
 				</li>
                 @endforeach

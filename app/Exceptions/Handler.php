@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Tradenity\SDK\Exceptions\EntityNotFoundException;
 use Tradenity\SDK\Exceptions\SessionExpiredException;
-use Tradenity\SDK\TradenityClient;
+use Tradenity\SDK\ApiClient;
 
 class Handler extends ExceptionHandler
 {
@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
         }
         else if($e instanceof SessionExpiredException)
         {
-            TradenityClient::resetCurrentSession();
+            //TradenityClient::resetCurrentSession();
             return response()->redirectTo('/', 302);
         }
         return parent::render($request, $e);

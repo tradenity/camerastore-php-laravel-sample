@@ -5,9 +5,9 @@
 	<div class="col-md-5 zoom-grid">
 		<div class="flexslider">
 			<ul class="slides">
-				@foreach( $product->photos as $ph)
-				<li data-thumb="{{ $ph->url}}">
-					<div class="thumb-image"> <img src="{{ $ph->url }}" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+				@foreach( $product->getPhotos() as $ph)
+				<li data-thumb="{{ $ph->getUrl() }}">
+					<div class="thumb-image"> <img src="{{ $ph->getUrl() }}" data-imagezoom="true" class="img-responsive" alt="" /> </div>
 				</li>
 				@endforeach
 			</ul>
@@ -15,15 +15,15 @@
 	</div>
 	<div class="col-md-7 dress-info">
 		<div class="dress-name">
-			<h3>{{ $product->title }}</h3>
-			<span>$ {{ $product->price }}</span>
+			<h3>{{ $product->getTitle() }}</h3>
+			<span>$ {{ $product->getPrice() }}</span>
 			<div class="clearfix"></div>
-			<p>{{ $product->description }}</p>
+			<p>{{ $product->getFullDescription() }}</p>
 
 		</div>
 
 		<div class="purchase">
-			<a class="cbp-vm-icon cbp-vm-add item_add add_to_cart_button" href="#" data-product_id="{{ $product->id}}">Add To Cart</a>
+			<a class="cbp-vm-icon cbp-vm-add item_add add_to_cart_button" href="#" data-product_id="{{ $product->getId() }}">Add To Cart</a>
 
 			<div class="clearfix"></div>
 		</div>

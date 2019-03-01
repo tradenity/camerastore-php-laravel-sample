@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Tradenity\SDK\Entities\Customer ;
+use Tradenity\SDK\Resources\Customer ;
 
 class SessionController extends Controller
 {
@@ -20,11 +20,11 @@ class SessionController extends Controller
     
     public function create(Request $request)
     {
-        $customer = Customer::findByUsername($request->input('username'));
+        $customer = Customer::findOneBy(['username' => $request->input('username')]);
         $user = new User($customer);
 
 
-        if ( (!is_null($customer)) && Hash::check($request->input('password'), $customer->password)) 
+        if ( (!is_null($customer)) && Hash::check($request->input('password'), $customer->getPassword()))
         {
             Auth::login($user);
             return redirect("/");
